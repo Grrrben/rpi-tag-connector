@@ -1,0 +1,6 @@
+pi-rc522==2.2.1
+python-dateutil==2.7.3
+RPi.GPIO==0.6.4
+six==1.11.0
+spidev==3.2
+
