@@ -17,7 +17,7 @@ class Led:
         # Set the GPIO modes to BCM Numbering
         # GPIO.setmode(GPIO.BCM)
         # GPIO.setmode(GPIO.BOARD)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
 
         for i in self.pins:
             # set all pins to high 3.3v

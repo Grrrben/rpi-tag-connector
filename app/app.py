@@ -18,7 +18,7 @@ class App():
         """
         print("I'm listening")
 
-        led = Led()
+        led = Led(35, 36, 37)
         led.blink_blue()
 
         rfid = Rfid(self.logger)

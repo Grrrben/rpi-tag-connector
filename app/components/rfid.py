@@ -46,7 +46,7 @@ class Rfid:
         Waiting for a signal
         """
 
-        self.rdr = RFID(pin_mode=GPIO.BCM)
+        self.rdr = RFID()
 
         while True:
             self.rdr.wait_for_tag()
