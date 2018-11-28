@@ -1,7 +1,8 @@
 [default]
-reader_type = KEYPAD |  RFID
-reader_id = 123
+# A unique ID for each reader
+uid = str
 
+# Credentials used to fetch a JWT
 username = str
 password = str
 
@@ -10,9 +11,7 @@ api_url = http(s)://domain.ext
 
 # endpoint to fetch a JWT
 endpoint_token = /path/to/obtain/jwt/auth/token
-# endpoint to grand or deny access
-# please be aware that a RFID reader has a different endpoint than an keypad/pin
-# use device_id and identifier as named vars, as these are used in the string.format() call.
-endpoint_access = /path/to/access/api?slxDeviceId={device_id}&pin|tag={identifier}
 
-use_cache = 0
+# endpoint to add the chipnumber
+# use chipNumber and connectorUid as POST params
+endpoint_chip_number = /path/to/api/endpoint
