@@ -1,10 +1,6 @@
 import logging
-import time
-
-from pad4pi import rpi_gpio
 
 from app.components import *
-from app.cache.cache import *
 from app.request.req import ApiRequest
 
 
