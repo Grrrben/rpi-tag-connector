@@ -23,11 +23,6 @@ def init():
     rdr.logger.setLevel(logging.INFO)
 
     rdr.logger.debug("DEBUG in main.init")
-
-    if config['default']['use_cache']:
-        c = app.SimpleCache()
-        rdr.set_cache(c)
-
     rdr.wait()
 
 def destroy():

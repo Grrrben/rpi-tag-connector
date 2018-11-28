@@ -12,9 +12,6 @@ class App():
 
         self.api = ApiRequest(self.config, self.logger)
 
-    def set_cache(self, cache: Cache):
-        self.cache = cache
-
     def wait(self):
         """
         waiting for a signal
