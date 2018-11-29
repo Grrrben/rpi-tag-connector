@@ -51,6 +51,7 @@ class Rfid:
         while True:
             self.rdr.wait_for_tag()
             (error, tag_type) = self.rdr.request()
+
             if not error:
                 (error, uid) = self.rdr.anticoll()
                 if not error:
