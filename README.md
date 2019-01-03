@@ -1,6 +1,6 @@
 # SLX Rpi tag connector
 
-## Connectiong a RFID-RC522 chip reader
+## Connecting a RFID-RC522 chip reader
 
 Connect the RC522 module to the RPI using the following wiring schema:
 

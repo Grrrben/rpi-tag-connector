@@ -7,11 +7,11 @@ username = str
 password = str
 
 # base url of the api
-api_url = http(s)://domain.ext
+api_url = http(s)://sub.domain.ext
 
 # endpoint to fetch a JWT
-endpoint_token = /path/to/obtain/jwt/auth/token
+endpoint_token = /api/auth/token
 
 # endpoint to add the chipnumber
 # use chipNumber and connectorUid as POST params
-endpoint_chip_number = /path/to/api/endpoint
+endpoint_chip_number = /api/external/tagconnector
