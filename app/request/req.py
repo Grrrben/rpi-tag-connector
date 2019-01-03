@@ -53,8 +53,8 @@ class ApiRequest():
 
         post_data = parse.urlencode({
             "chipNumber": chipnumber,
-            "connectorUid": uid
-        })
+            "deviceUid": uid
+        }).encode()
 
         url = "{}{}".format(self.config['default']['api_url'], self.config['default']['endpoint_chip_number'])
 
@@ -62,7 +62,6 @@ class ApiRequest():
             req = request.Request(url, headers=headers, data=post_data)
             resp = request.urlopen(req)
             data = json.loads(resp.read().decode('utf-8'))
-
 
             if "error" in data:
                 self.logger.error(data["error"])
