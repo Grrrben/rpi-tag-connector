@@ -89,7 +89,7 @@ cat .ssh/id_rsa.pub
 
 ```
 
-Clone de repository op https://github.com/Grrrben/rpi-tag-connector:
+Clone de [repository](https://github.com/Grrrben/rpi-tag-connector):
 
 ```
 git clone git@github.com:Grrrben/rpi-tag-connector.git
@@ -111,7 +111,7 @@ Om de koppeling tussen de RC522 tagreader en de Zero te maken gebruik je onderst
 | 3.3V           | 8         | 1,17             | 3V3          |
 
 
-(Pinout)[https://pinout.xyz/] is een goede website om de nummers van de verschillende pinnen te bekijken.
+[Pinout](https://pinout.xyz/) is een goede website om de nummers van de verschillende pinnen te bekijken.
 De software maakt gebruik van de Physical RPi pin, ook wel BOARD schema genoemd.
 
 Bij het instellen van de Led worden board pins 35, 36 en 37 voor RGB gebruikt.
