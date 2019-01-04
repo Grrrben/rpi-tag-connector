@@ -1,6 +1,5 @@
 # RPI tag_reader
 
-
 ## Introductie
 
 Dit is het installatie document dat beschrijft hoe je:
@@ -9,6 +8,10 @@ Dit is het installatie document dat beschrijft hoe je:
 2. Een Raspberry Pi Zero (Zero) als kaartlezer opzet
 3. en deze koppelt aan een Smart API website.
 
+## Endpoints
+
+`/api/registration/connector/<myconnectoruid>` laat het laatste chipnummer zien dat is gelezen
+door de reader met ID <myconnectoruid>.
 
 ## (1) Gateway
 
@@ -16,7 +19,7 @@ De RPI3 gebruiken we als WiFi gateway voor een of meer paslezers.
 We gaan de WiFi dus omgekeerd gebruiken op de RPI3, als access point, en
 sluiten de RPI3 zelf aan  via een LAN kabel.
 
-### (1.1) Raspian
+### (1.1) Raspian OS
 
 Zet de laatste Raspbian versie op een SD kaart.
 Download Raspbian hier: https://www.raspberrypi.org/downloads/raspbian/
@@ -95,6 +98,8 @@ Clone de [repository](https://github.com/Grrrben/rpi-tag-connector):
 git clone git@github.com:Grrrben/rpi-tag-connector.git
 ```
 
+De `/log/` dir moet schrijfbaar zijn.
+
 ### (2.3) Board setup
 
 Om de koppeling tussen de RC522 tagreader en de Zero te maken gebruik je onderstaand schema:
@@ -111,10 +116,11 @@ Om de koppeling tussen de RC522 tagreader en de Zero te maken gebruik je onderst
 | 3.3V           | 8         | 1,17             | 3V3          |
 
 
-[Pinout](https://pinout.xyz/) is een goede website om de nummers van de verschillende pinnen te bekijken.
-De software maakt gebruik van de Physical RPi pin, ook wel BOARD schema genoemd.
+[Pinout](https://pinout.xyz/) is een goede website om de nummers van de verschillende pinnen
+te bekijken. De software maakt gebruik van de Physical RPi pin, ook wel BOARD schema genoemd.
 
 Bij het instellen van de Led worden board pins 35, 36 en 37 voor RGB gebruikt.
+Dit is aan te passen bij het aanmaken van de Led.
 
 ## (3) Koppelen
 
@@ -138,9 +144,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=root
+User=pi
 WorkingDirectory=/home/pi/rpi-tag-connector
-ExecStart=/home/pi/rpi-tag-connector/venv/bin/python /home/pi/rpi-tag-connector/main.py
+ExecStart=/home/pi/rpi-tag-connector/venv/bin/python3 /home/pi/rpi-tag-connector/main.py
 Restart=always
 
 [Install]
@@ -152,7 +158,9 @@ sudo systemctl enable tag_connector.service
 
 ### Debuggen
 
+Kijk vooral naar de logfiles;
 
+`tail -f log/smartapi_1_2019.log`
 
-tail -f log/smartapi_1_2019.log
+Maar ook systemd kan informatie geven via `sudo journalctl -f -u tag_connector`.
 

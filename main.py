@@ -1,5 +1,6 @@
 import configparser
 import logging
+import os
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 
@@ -14,7 +15,10 @@ def init():
     rdr = app.App(config)
 
     now = datetime.now()
-    logfile = "log/smartapi_{0}_{1}.log".format(now.month, now.year)
+
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    logfile = "{0}/log/smartapi_{1}_{2}.log".format(dir_path, now.month, now.year)
     file_handler = RotatingFileHandler(logfile, maxBytes=10485760, backupCount=10)
     file_handler.setFormatter(logging.Formatter(
         '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
