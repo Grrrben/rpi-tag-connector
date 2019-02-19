@@ -6,12 +6,26 @@ Dit is het installatie document dat beschrijft hoe je:
 
 1. Een Raspberry Pi (RPI3) 3 als gateway opzet
 2. Een Raspberry Pi Zero (Zero) als kaartlezer opzet
-3. en deze koppelt aan een Smart API website.
+3. Deze koppelt aan een Smart API website.
 
 ## Endpoints
 
+Binnen de app worden de volgende endpoints gebruikt om een JWT op te halen en om een chip nummer te posten:
+
+```
+# Fetch JWT
+endpoint_token = /api/auth/token
+
+# Post Chipnummer
+endpoint_chip_number = /api/external/tagconnector
+```
+
+Hierna kan het laatst gelezen chipnummer via de API opgehaald worden.
+
 `/api/registration/connector/<myconnectoruid>` laat het laatste chipnummer zien dat is gelezen
 door de reader met ID <myconnectoruid>.
+
+Dit kan gedurende een bepaalde tijd, welke is in te stellen in de Smart_api endpoints.
 
 ## (1) Gateway
 
@@ -120,7 +134,7 @@ Om de koppeling tussen de RC522 tagreader en de Zero te maken gebruik je onderst
 te bekijken. De software maakt gebruik van de Physical RPi pin, ook wel BOARD schema genoemd.
 
 Bij het instellen van de Led worden board pins 35, 36 en 37 voor RGB gebruikt.
-Dit is aan te passen bij het aanmaken van de Led.
+Dit is aan te passen bij het aanmaken van de Led, zie de constructor in de class.
 
 ## (3) Koppelen
 
@@ -164,3 +178,14 @@ Kijk vooral naar de logfiles;
 
 Maar ook systemd kan informatie geven via `sudo journalctl -f -u tag_connector`.
 
+### Toegang tot de readers
+
+In de beschreven opzet wordt gebruik gemaakt van een Access Point met een LAN aansluiting en een of meer Readers
+die via WIFI naar het access point gaan om daarlangs het internet op te gaan. Toegang tot de readers wordt dan via het
+Access point verkregen.
+
+Een makkelijke tool om dit voor elkaar te krijgen is [ngrok](https://ngrok.com/docs).
+Als deze automatisch opstart bij het start en van het Access Point device dan is het device zichtbaar in het (online)
+overzicht van de ngrok devices.
+
+> ngrok exposes local servers behind NATs and firewalls to the public internet over secure tunnels.
